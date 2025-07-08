@@ -1,0 +1,51 @@
+<h2>Ajouter un patient USLD</h2>
+
+<form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Nom :</label>
+        <input type="text" formControlName="nom" />
+    </div>
+
+    <div>
+        <label>Prénom :</label>
+        <input type="text" formControlName="prenom" />
+    </div>
+
+    <div>
+        <label>Date de naissance :</label>
+        <input type="date" formControlName="dateNaissance" />
+    </div>
+
+    <div>
+        <label>Numéro de chambre :</label>
+        <input type="number" formControlName="numeroChambre" />
+    </div>
+
+    <div>
+        <label>Niveau d’autonomie :</label>
+        <input type="text" formControlName="niveauAutonomie" />
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" formControlName="toiletteAssistee" />
+            Toilette assistée
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" formControlName="aideHabillage" />
+            Aide à l’habillage
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" formControlName="aideRepas" />
+            Aide au repas
+        </label>
+    </div>
+
+    <button type="submit" [disabled]="!patientForm.valid">Valider</button>
+</form>
