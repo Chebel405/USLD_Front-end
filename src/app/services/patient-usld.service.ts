@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 
 export class PatientUsldService {
-    private apiUrl = 'http://localhost:8080/patient-usld';
+    private apiUrl = 'http://localhost:8081/patient/usld';
 
     constructor(private http: HttpClient) { }
 
@@ -24,7 +24,7 @@ export class PatientUsldService {
     }
 
     //Créer new patient ac id
-    create(patient: PatientUSLD): Observable<PatientUSLD> {
+    createPatientUSLD(patient: PatientUSLD): Observable<PatientUSLD> {
         return this.http.post<PatientUSLD>(this.apiUrl, patient);
     }
 

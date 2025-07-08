@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { PatientUsldService } from '../../../../services/patient-usld.service';
 import { PatientUSLD } from '../../../../models/patient-usld.model';
@@ -11,7 +10,7 @@ import { PatientUSLD } from '../../../../models/patient-usld.model';
   templateUrl: './add-patient-usld.component.html',
   styleUrls: ['./add-patient-usld.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class AddPatientUsldComponent {
   patientForm: FormGroup;
@@ -34,7 +33,7 @@ export class AddPatientUsldComponent {
   onSubmit(): void {
     if (this.patientForm.valid) {
       const nouveauPatient: PatientUSLD = this.patientForm.value;
-      this.patientService.create(nouveauPatient).subscribe({
+      this.patientService.createPatientUSLD(nouveauPatient).subscribe({
         next: (result) => {
           console.log('Patient ajouté avec succès', result);
           this.patientForm.reset();
