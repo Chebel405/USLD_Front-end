@@ -8,11 +8,11 @@ import { PatientSansSoin } from "../models/patient-sans-soin.model";
 })
 
 export class PatientSansSoinService {
-    private apiUrl = 'http://localhost:8080/patients-sanssoin';
+    private apiUrl = 'http://localhost:8081/patients-sanssoin';
 
     constructor(private http: HttpClient) { }
 
-    getAll(): Observable<PatientSansSoin[]> {
+    getAllPatientSansSoin(): Observable<PatientSansSoin[]> {
         return this.http.get<PatientSansSoin[]>(this.apiUrl);
     }
 
@@ -20,15 +20,15 @@ export class PatientSansSoinService {
         return this.http.get<PatientSansSoin>(`${this.apiUrl}/${id}`);
     }
 
-    create(patient: PatientSansSoin): Observable<PatientSansSoin> {
+    createPatientSansSoin(patient: PatientSansSoin): Observable<PatientSansSoin> {
         return this.http.post<PatientSansSoin>(this.apiUrl, patient);
     }
 
-    update(id: number, patient: PatientSansSoin): Observable<PatientSansSoin> {
+    updatePatientSansSoin(id: number, patient: PatientSansSoin): Observable<PatientSansSoin> {
         return this.http.put<PatientSansSoin>(`${this.apiUrl}/${id}`, patient);
     }
 
-    delete(id: number): Observable<void> {
+    deletePatientSansSoin(id: number): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
 

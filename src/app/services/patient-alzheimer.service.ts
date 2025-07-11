@@ -7,11 +7,11 @@ import { PatientAlzheimer } from "../models/patient-alzheimer.model";
     providedIn: 'root'
 })
 export class PatientAlzheimerService {
-    private apiUrl = 'http://localhost:8080/patients-alzheimer';
+    private apiUrl = 'http://localhost:8081/patients-alzheimer';
 
     constructor(private http: HttpClient) { }
 
-    getAll(): Observable<PatientAlzheimer[]> {
+    getAllPatientsAlzheimer(): Observable<PatientAlzheimer[]> {
         return this.http.get<PatientAlzheimer[]>(this.apiUrl);
     }
 
@@ -19,15 +19,15 @@ export class PatientAlzheimerService {
         return this.http.get<PatientAlzheimer>(`${this.apiUrl}/${id}`);
     }
 
-    create(patient: PatientAlzheimer): Observable<PatientAlzheimer> {
+    createPatientAlzheimer(patient: PatientAlzheimer): Observable<PatientAlzheimer> {
         return this.http.post<PatientAlzheimer>(this.apiUrl, patient);
     }
 
-    update(id: number, patient: PatientAlzheimer): Observable<PatientAlzheimer> {
+    updatePatientAlzheimer(id: number, patient: PatientAlzheimer): Observable<PatientAlzheimer> {
         return this.http.put<PatientAlzheimer>(`${this.apiUrl}/${id}`, patient);
     }
 
-    delete(id: number): Observable<void> {
+    deletePatientAlzheimer(id: number): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
 

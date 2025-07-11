@@ -1,8 +1,6 @@
-export interface PatientAlzheimer {
-    id?: number;
-    nom: string;
-    prenom: string;
-    dateNaissance: string;
+import { Patient } from "./patient.model";
+
+export interface PatientAlzheimer extends Patient {
     stadeMaladie: string;
     suiviPsychologue: boolean;
 }
