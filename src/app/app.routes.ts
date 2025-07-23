@@ -21,6 +21,11 @@ export const routes: Routes = [
             import('./components/patients/sans-soin/sans-soin.routes').then((m) => m.SANS_SOIN_ROUTES),
     },
     {
+        path: 'register',
+        loadComponent: () =>
+            import('./components/auth/register/register.component').then(m => m.RegisterComponent)
+    },
+    {
         path: '',
         redirectTo: '/usld/ajouter',
         pathMatch: 'full',

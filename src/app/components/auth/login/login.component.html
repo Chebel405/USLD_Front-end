@@ -1,5 +1,9 @@
 <h2>Connexion</h2>
 
+<div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+</div>
+
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div>
         <label>Email :</label>
