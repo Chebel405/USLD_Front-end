@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ErrorService } from '../../../services/error.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,9 @@ export class LoginComponent {
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private authService: AuthService
+
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -33,7 +36,7 @@ export class LoginComponent {
       this.http.post<any>('http://localhost:8081/auth/login', this.loginForm.value).subscribe({
         next: (response) => {
           if (response && response.token) {
-            localStorage.setItem('token', response.token);
+            this.authService.saveToken(response.token);
             this.router.navigate(['/']);
           } else {
             this.errorMessage = 'Authentification échouée. Aucun token reçu.';

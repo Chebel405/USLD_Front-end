@@ -17,19 +17,27 @@ export class AuthService {
         });
     }
 
+    private isBrowser(): boolean {
+        return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+    }
+
     saveToken(token: string): void {
-        localStorage.setItem('jwtToken', token);
+        if (this.isBrowser()) {
+            localStorage.setItem('jwtToken', token);
+        }
     }
 
     getToken(): string | null {
-        return localStorage.getItem('jwtToken');
+        return this.isBrowser() ? localStorage.getItem('jwtToken') : null;
     }
 
     logout(): void {
-        localStorage.removeItem('jwtToken');
+        if (this.isBrowser()) {
+            localStorage.removeItem('jwtToken');
+        }
     }
 
     isLoggedIn(): boolean {
-        return !!this.getToken();
+        return this.isBrowser() && !!localStorage.getItem('jwtToken');
     }
 }

@@ -1,0 +1,7 @@
+<nav class="navbar">
+    <span>Application de gestion des patients</span>
+
+    <button *ngIf="authService.isLoggedIn()" (click)="logout()" class="logout-button">
+        Se déconnecter
+    </button>
+</nav>
