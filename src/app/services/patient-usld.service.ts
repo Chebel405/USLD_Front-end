@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 
 export class PatientUsldService {
-    private apiUrl = 'http://localhost:8081/patient/usld';
+    private apiUrl = 'http://localhost:8081/patients/usld';
 
     constructor(private http: HttpClient) { }
 
@@ -37,4 +37,30 @@ export class PatientUsldService {
     delete(id: number): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
+
+    rechercherParNom(nom: string): Observable<PatientUSLD[]> {
+        console.log("Appel API vers :", `${this.apiUrl}/search/nom?nom=${nom}`);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/nom?nom=${nom}`);
+    }
+
+    rechercherParPrenom(prenom: string): Observable<PatientUSLD[]> {
+        console.log("Appel API vers :", `${this.apiUrl}/search/prenom?prenom=${prenom}`);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/prenom?prenom=${prenom}`);
+    }
+
+    rechercherParDateNaissance(dateNaissance: string): Observable<PatientUSLD[]> {
+        console.log("Appel API vers :", `${this.apiUrl}/search/date-naissance?dateNaissance=${dateNaissance}`);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/date-naissance?dateNaissance=${dateNaissance}`);
+    }
+
+    rechercherParNumeroChambre(numeroChambre: string): Observable<PatientUSLD[]> {
+        console.log("Appel API vers :", `${this.apiUrl}/search/chambre?numeroChambre=${numeroChambre}`);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/chambre?numeroChambre=${numeroChambre}`);
+    }
+
+    rechercherParAutonomie(niveauAutonomie: string): Observable<PatientUSLD[]> {
+        console.log("Appel API vers :", `${this.apiUrl}/search/autonomie?niveauAutonomie=${niveauAutonomie}`);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/autonomie?niveauAutonomie=${niveauAutonomie}`);
+    }
+
 }

@@ -1,0 +1,67 @@
+<h2>Recherche de patients USLD</h2>
+
+
+<form (ngSubmit)="rechercherNom()" style="margin-bottom: 1rem;">
+    <input [(ngModel)]="nomRecherche" name="nomRecherche" placeholder="Nom du patient" required />
+    <button type="submit">Rechercher par nom</button>
+</form>
+
+<form (ngSubmit)="rechercherPrenom()" style="margin-bottom: 1rem;">
+    <input [(ngModel)]="prenomRecherche" name="prenomRecherche" placeholder="Prénom du patient" required />
+    <button type="submit">Rechercher par prénom</button>
+</form>
+
+<form (ngSubmit)="rechercherDateNaissance()" style="margin-bottom: 1rem;">
+    <input [(ngModel)]="dateNaissanceRecherche" name="dateNaissanceRecherche" type="date"
+        placeholder="Date de naissance du patient" required />
+    <button type="submit">Rechercher par date de naissance</button>
+</form>
+
+<form (ngSubmit)="rechercherNumeroChambre()" style="margin-bottom: 1rem;">
+    <input [(ngModel)]="numeroChambreRecherche" name="numeroChambreRecherche" placeholder="Numéro de chambre"
+        required />
+    <button type="submit">Numéro de chambre</button>
+</form>
+
+<form (ngSubmit)="rechercherAutonomie()" style="margin-bottom: 1rem;">
+    <input [(ngModel)]="autonomieRecherche" name="autonomieRecherche" placeholder="Niveau d'autonomie" required />
+    <button type="submit">Niveau d'autonomie</button>
+</form>
+
+
+<div *ngIf="patients.length > 0">
+    <h3>Résultats :</h3>
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Chambre</th>
+                <th>Autonomie</th>
+                <th>Toilette assistée</th>
+                <th>Aide habillage</th>
+                <th>Aide repas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of patients">
+                <td>{{ p.id }}</td>
+                <td>{{ p.nom }}</td>
+                <td>{{ p.prenom }}</td>
+                <td>{{ p.dateNaissance }}</td>
+                <td>{{ p.numeroChambre }}</td>
+                <td>{{ p.niveauAutonomie }}</td>
+                <td>{{ p.toiletteAssistee ? 'Oui' : 'Non' }}</td>
+                <td>{{ p.aideHabillage ? 'Oui' : 'Non' }}</td>
+                <td>{{ p.aideRepas ? 'Oui' : 'Non' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Message si aucun résultat -->
+<div *ngIf="patients.length === 0">
+    <p>Aucun patient trouvé.</p>
+</div>

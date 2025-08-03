@@ -30,5 +30,14 @@ export const routes: Routes = [
         redirectTo: '/usld/ajouter',
         pathMatch: 'full',
     },
+    {
+        path: 'rechercher',
+        loadComponent: () =>
+            import('./components/patients/usld/search-patient-usld/search-patient-usld.component')
+                .then(m => m.SearchPatientUsldComponent)
+    }
+
+
+
 
 ];
