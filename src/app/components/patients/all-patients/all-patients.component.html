@@ -4,17 +4,32 @@
 <section>
     <h3>Patients USLD</h3>
     <div *ngIf="patientsUSLD.length > 0; else noUsld">
-        <ul>
-            <li *ngFor="let patient of patientsUSLD">
-                - Nom : {{ patient.nom }} - Prénom : {{ patient.prenom }} - Niveau autonomie : {{
-                patient.niveauAutonomie}} - Date de
-                naissance : {{ patient.dateNaissance}} - Chambre : {{
-                patient.numeroChambre }} - Niveau autonomie : {{patient.niveauAutonomie}}
-                - Toilette assistée : {{patient.toiletteAssistee}}
-                - Aide à l'habillage : {{patient.aideHabillage}}
-                - Aide au repas : {{patient.niveauAutonomie}}
-            </li>
-        </ul>
+        <table class="patient-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de naissance</th>
+                    <th>Chambre</th>
+                    <th>Niveau autonomie</th>
+                    <th>Toilette assistée</th>
+                    <th>Aide à l'habillage</th>
+                    <th>Aide au repas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let patient of patientsUSLD">
+                    <td>{{ patient.nom }}</td>
+                    <td>{{ patient.prenom }}</td>
+                    <td>{{ patient.dateNaissance }}</td>
+                    <td>{{ patient.numeroChambre }}</td>
+                    <td>{{ patient.niveauAutonomie }}</td>
+                    <td>{{ patient.toiletteAssistee }}</td>
+                    <td>{{ patient.aideHabillage }}</td>
+                    <td>{{ patient.aideRepas }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <ng-template #noUsld>
         <p>Aucun patient USLD trouvé.</p>
@@ -25,16 +40,32 @@
 <section>
     <h3>Patients Alzheimer</h3>
     <div *ngIf="patientsAlzheimer.length > 0; else noAlzheimer">
-        <ul>
-            <li *ngFor="let patient of patientsAlzheimer">
-                - Nom : {{ patient.nom }} - Prénom : {{ patient.prenom }} - Niveau autonomie : {{
-                patient.niveauAutonomie }}
-                - Date de naissance : {{ patient.dateNaissance }} - Chambre : {{ patient.numeroChambre }}
-                - Toilette assistée : {{ patient.toiletteAssistee }}
-                - Aide à l'habillage : {{ patient.aideHabillage }}
-                - Aide au repas : {{ patient.aideRepas }}
-            </li>
-        </ul>
+        <table class="patient-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de naissance</th>
+                    <th>Chambre</th>
+                    <th>Niveau autonomie</th>
+                    <th>Toilette assistée</th>
+                    <th>Aide à l'habillage</th>
+                    <th>Aide au repas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let patient of patientsAlzheimer">
+                    <td>{{ patient.nom }}</td>
+                    <td>{{ patient.prenom }}</td>
+                    <td>{{ patient.dateNaissance }}</td>
+                    <td>{{ patient.numeroChambre }}</td>
+                    <td>{{ patient.niveauAutonomie }}</td>
+                    <td>{{ patient.toiletteAssistee }}</td>
+                    <td>{{ patient.aideHabillage }}</td>
+                    <td>{{ patient.aideRepas }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <ng-template #noAlzheimer>
         <p>Aucun patient Alzheimer trouvé.</p>
@@ -45,16 +76,32 @@
 <section>
     <h3>Patients Sans Soin</h3>
     <div *ngIf="patientsSansSoin.length > 0; else noSansSoin">
-        <ul>
-            <li *ngFor="let patient of patientsSansSoin">
-                - Nom : {{ patient.nom }} - Prénom : {{ patient.prenom }} - Niveau autonomie : {{
-                patient.niveauAutonomie }}
-                - Date de naissance : {{ patient.dateNaissance }} - Chambre : {{ patient.numeroChambre }}
-                - Toilette assistée : {{ patient.toiletteAssistee }}
-                - Aide à l'habillage : {{ patient.aideHabillage }}
-                - Aide au repas : {{ patient.aideRepas }}
-            </li>
-        </ul>
+        <table class="patient-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de naissance</th>
+                    <th>Chambre</th>
+                    <th>Niveau autonomie</th>
+                    <th>Toilette assistée</th>
+                    <th>Aide à l'habillage</th>
+                    <th>Aide au repas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let patient of patientsSansSoin">
+                    <td>{{ patient.nom }}</td>
+                    <td>{{ patient.prenom }}</td>
+                    <td>{{ patient.dateNaissance }}</td>
+                    <td>{{ patient.numeroChambre }}</td>
+                    <td>{{ patient.niveauAutonomie }}</td>
+                    <td>{{ patient.toiletteAssistee }}</td>
+                    <td>{{ patient.aideHabillage }}</td>
+                    <td>{{ patient.aideRepas }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <ng-template #noSansSoin>
         <p>Aucun patient Sans Soin trouvé.</p>
