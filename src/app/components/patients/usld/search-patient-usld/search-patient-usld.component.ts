@@ -23,7 +23,7 @@ export class SearchPatientUsldComponent {
 
   rechercherNom() {
     console.log("Recherche déclenchée par nom :", this.nomRecherche);
-    this.patientService.rechercherParNom(this.nomRecherche).subscribe({
+    this.patientService.findByNom(this.nomRecherche).subscribe({
       next: (patients) => this.patients = patients,
       error: (err) => console.error(err)
     });
@@ -31,7 +31,7 @@ export class SearchPatientUsldComponent {
 
   rechercherPrenom() {
     console.log("Recherche déclenchée par prénom :", this.prenomRecherche);
-    this.patientService.rechercherParPrenom(this.prenomRecherche).subscribe({
+    this.patientService.findByPrenom(this.prenomRecherche).subscribe({
       next: (patients) => this.patients = patients,
       error: (err) => console.error(err)
     });
@@ -39,7 +39,7 @@ export class SearchPatientUsldComponent {
 
   rechercherDateNaissance() {
     console.log("Recherche déclenchée par date de naissance :", this.dateNaissanceRecherche);
-    this.patientService.rechercherParDateNaissance(this.dateNaissanceRecherche).subscribe({
+    this.patientService.findByDateNaissance(this.dateNaissanceRecherche).subscribe({
       next: (patients) => this.patients = patients,
       error: (err) => console.error(err)
     });
@@ -47,7 +47,7 @@ export class SearchPatientUsldComponent {
 
   rechercherNumeroChambre() {
     console.log("Recherche déclenchée par numéros de chambre :", this.numeroChambreRecherche);
-    this.patientService.rechercherParNumeroChambre(this.numeroChambreRecherche).subscribe({
+    this.patientService.findByNumeroChambre(this.numeroChambreRecherche).subscribe({
       next: (patients) => this.patients = patients,
       error: (err) => console.error(err)
     });
@@ -55,7 +55,7 @@ export class SearchPatientUsldComponent {
 
   rechercherAutonomie() {
     console.log("Recherche déclenchée par niveau d'autonomie :", this.autonomieRecherche);
-    this.patientService.rechercherParAutonomie(this.autonomieRecherche).subscribe({
+    this.patientService.findByAutonomie(this.autonomieRecherche).subscribe({
       next: (patients) => this.patients = patients,
       error: (err) => console.error(err)
     });

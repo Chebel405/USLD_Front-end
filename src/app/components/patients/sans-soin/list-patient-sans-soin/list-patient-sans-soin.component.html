@@ -1,0 +1,28 @@
+<p>list-patient-sans-soin works!</p>
+
+<thead>
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Chambre</th>
+        <th>Autonomie</th>
+        <th>Toilette assistée</th>
+        <th>Habillage</th>
+        <th>Repas</th>
+        <th>Type de patient</th> <!-- ✅ Ajout -->
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let patient of patients">
+        <td>{{ patient.nom }}</td>
+        <td>{{ patient.prenom }}</td>
+        <td>{{ patient.dateNaissance }}</td>
+        <td>{{ patient.numeroChambre || 'Non renseigné' }}</td>
+        <td>{{ patient.niveauAutonomie || 'Non renseigné' }}</td>
+        <td>{{ patient.toiletteAssistee ? 'Oui' : 'Non' }}</td>
+        <td>{{ patient.aideHabillage ? 'Oui' : 'Non' }}</td>
+        <td>{{ patient.aideRepas ? 'Oui' : 'Non' }}</td>
+
+    </tr>
+</tbody>

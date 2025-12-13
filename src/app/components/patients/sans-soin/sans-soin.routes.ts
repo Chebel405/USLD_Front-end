@@ -3,7 +3,7 @@ import { AddPatientSansSoinComponent } from './add-patient-sans-soin/add-patient
 
 export const SANS_SOIN_ROUTES: Routes = [
     {
-        path: 'ajouter',
+        path: 'liste',
         component: AddPatientSansSoinComponent,
     }
 ];

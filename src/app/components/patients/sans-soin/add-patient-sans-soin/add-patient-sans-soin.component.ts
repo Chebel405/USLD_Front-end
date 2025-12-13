@@ -32,7 +32,7 @@ export class AddPatientSansSoinComponent {
   onSubmit(): void {
     if (this.patientForm.valid) {
       const nouveauPatient: PatientSansSoin = this.patientForm.value;
-      this.patientService.createPatientSansSoin(nouveauPatient).subscribe({
+      this.patientService.create(nouveauPatient).subscribe({
         next: (result) => {
           console.log('Patient sans soin ajouté avec succès', result);
           this.patientForm.reset();

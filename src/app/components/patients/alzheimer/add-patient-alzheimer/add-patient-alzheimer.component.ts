@@ -35,7 +35,7 @@ export class AddPatientAlzheimerComponent {
   onSubmit(): void {
     if (this.patientForm.valid) {
       const nouveauPatient: PatientAlzheimer = this.patientForm.value;
-      this.patientService.createPatientAlzheimer(nouveauPatient).subscribe({
+      this.patientService.create(nouveauPatient).subscribe({
         next: (result) => {
           console.log('PAtient Azheimer ajouté avec succès', result);
           this.patientForm.reset();

@@ -33,7 +33,7 @@ export class AddPatientUsldComponent {
   onSubmit(): void {
     if (this.patientForm.valid) {
       const nouveauPatient: PatientUSLD = this.patientForm.value;
-      this.patientService.createPatientUSLD(nouveauPatient).subscribe({
+      this.patientService.create(nouveauPatient).subscribe({
         next: (result) => {
           console.log('Patient ajouté avec succès', result);
           this.patientForm.reset();

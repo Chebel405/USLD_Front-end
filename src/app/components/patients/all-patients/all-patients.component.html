@@ -1,0 +1,62 @@
+<h2>Liste complète des patients</h2>
+
+<!-- Patients USLD -->
+<section>
+    <h3>Patients USLD</h3>
+    <div *ngIf="patientsUSLD.length > 0; else noUsld">
+        <ul>
+            <li *ngFor="let patient of patientsUSLD">
+                - Nom : {{ patient.nom }} - Prénom : {{ patient.prenom }} - Niveau autonomie : {{
+                patient.niveauAutonomie}} - Date de
+                naissance : {{ patient.dateNaissance}} - Chambre : {{
+                patient.numeroChambre }} - Niveau autonomie : {{patient.niveauAutonomie}}
+                - Toilette assistée : {{patient.toiletteAssistee}}
+                - Aide à l'habillage : {{patient.aideHabillage}}
+                - Aide au repas : {{patient.niveauAutonomie}}
+            </li>
+        </ul>
+    </div>
+    <ng-template #noUsld>
+        <p>Aucun patient USLD trouvé.</p>
+    </ng-template>
+</section>
+
+<!-- Patients Alzheimer -->
+<section>
+    <h3>Patients Alzheimer</h3>
+    <div *ngIf="patientsAlzheimer.length > 0; else noAlzheimer">
+        <ul>
+            <li *ngFor="let patient of patientsAlzheimer">
+                - Nom : {{ patient.nom }} - Prénom : {{ patient.prenom }} - Niveau autonomie : {{
+                patient.niveauAutonomie }}
+                - Date de naissance : {{ patient.dateNaissance }} - Chambre : {{ patient.numeroChambre }}
+                - Toilette assistée : {{ patient.toiletteAssistee }}
+                - Aide à l'habillage : {{ patient.aideHabillage }}
+                - Aide au repas : {{ patient.aideRepas }}
+            </li>
+        </ul>
+    </div>
+    <ng-template #noAlzheimer>
+        <p>Aucun patient Alzheimer trouvé.</p>
+    </ng-template>
+</section>
+
+<!-- Patients Sans Soin -->
+<section>
+    <h3>Patients Sans Soin</h3>
+    <div *ngIf="patientsSansSoin.length > 0; else noSansSoin">
+        <ul>
+            <li *ngFor="let patient of patientsSansSoin">
+                - Nom : {{ patient.nom }} - Prénom : {{ patient.prenom }} - Niveau autonomie : {{
+                patient.niveauAutonomie }}
+                - Date de naissance : {{ patient.dateNaissance }} - Chambre : {{ patient.numeroChambre }}
+                - Toilette assistée : {{ patient.toiletteAssistee }}
+                - Aide à l'habillage : {{ patient.aideHabillage }}
+                - Aide au repas : {{ patient.aideRepas }}
+            </li>
+        </ul>
+    </div>
+    <ng-template #noSansSoin>
+        <p>Aucun patient Sans Soin trouvé.</p>
+    </ng-template>
+</section>
