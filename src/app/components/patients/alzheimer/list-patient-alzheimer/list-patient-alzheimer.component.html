@@ -1,1 +1,28 @@
-<p>list-patient-alzheimer works!</p>
+<h2>Liste des patients Alzheimer</h2>
+
+<table class="patient-table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+            <th>Chambre</th>
+            <th>Niveau autonomie</th>
+            <th>Toilette assistée</th>
+            <th>Aide à l'habillage</th>
+            <th>Aide au repas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let patient of patients">
+            <td>{{ patient.nom }}</td>
+            <td>{{ patient.prenom }}</td>
+            <td>{{ patient.dateNaissance }}</td>
+            <td>{{ patient.numeroChambre }}</td>
+            <td>{{ patient.niveauAutonomie }}</td>
+            <td>{{ patient.toiletteAssistee }}</td>
+            <td>{{ patient.aideHabillage }}</td>
+            <td>{{ patient.aideRepas }}</td>
+        </tr>
+    </tbody>
+</table>
