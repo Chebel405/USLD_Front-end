@@ -18,10 +18,10 @@ export const routes: Routes = [
     },
     {
         path: 'patients/sanssoin',
-        loadComponent: () =>
-            import('./components/patients/sans-soin/list-patient-sans-soin/list-patient-sans-soin.component')
-                .then(m => m.ListPatientSansSoinComponent)
+        loadChildren: () =>
+            import('./components/patients/sans-soin/sans-soin.routes').then((m) => m.SANS_SOIN_ROUTES),
     },
+
     {
         path: 'register',
         loadComponent: () =>

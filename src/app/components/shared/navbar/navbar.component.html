@@ -1,5 +1,8 @@
 <nav class="navbar">
-    <span>Application de gestion des patients</span>
+    <div class="navbar-left">
+        <img src="assets/hospital.jpg" alt="logo" />
+        <span class="app-title">Application de gestion des patients</span>
+    </div>
 
     <button *ngIf="authService.isLoggedIn()" (click)="logout()" class="logout-button">
         Se déconnecter
