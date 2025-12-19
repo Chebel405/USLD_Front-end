@@ -37,7 +37,7 @@ export class LoginComponent {
         next: (response) => {
           if (response && response.token) {
             this.authService.saveToken(response.token);
-            this.router.navigate(['/']);
+            this.router.navigate(['/home']);
           } else {
             this.errorMessage = 'Authentification échouée. Aucun token reçu.';
           }

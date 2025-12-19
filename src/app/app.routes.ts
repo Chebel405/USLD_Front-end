@@ -3,6 +3,11 @@ import { ListPatientSansSoinComponent } from './components/patients/sans-soin/li
 
 export const routes: Routes = [
     {
+        path: 'home',
+        loadComponent: () =>
+            import('./components/home/home.component').then(m => m.HomeComponent)
+    },
+    {
         path: 'usld',
         loadChildren: () =>
             import('./components/patients/usld/usld.routes').then((m) => m.USLD_ROUTES),
@@ -41,7 +46,7 @@ export const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/usld/ajouter',
+        redirectTo: '/login',
         pathMatch: 'full',
     },
     {

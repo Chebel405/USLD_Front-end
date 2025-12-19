@@ -1,0 +1,11 @@
+<div class="accueil-container">
+    <h2>Bienvenue dans le système de gestion USLD 🏥</h2>
+    <p>Connecté en tant que <strong>{{ role }}</strong></p>
+
+    <div class="actions">
+        <button routerLink="/patients/tous">📋 Voir tous les patients</button>
+        <button routerLink="/usld/ajouter">➕ Ajouter un patient USLD</button>
+        <button routerLink="/rechercher">🔍 Rechercher un patient</button>
+        <button *ngIf="isAdmin" routerLink="/soignants">👨‍⚕️ Gérer les soignants</button>
+    </div>
+</div>

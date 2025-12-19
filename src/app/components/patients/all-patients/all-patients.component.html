@@ -24,9 +24,9 @@
                     <td>{{ patient.dateNaissance }}</td>
                     <td>{{ patient.numeroChambre }}</td>
                     <td>{{ patient.niveauAutonomie }}</td>
-                    <td>{{ patient.toiletteAssistee }}</td>
-                    <td>{{ patient.aideHabillage }}</td>
-                    <td>{{ patient.aideRepas }}</td>
+                    <td>{{ patient.toiletteAssistee ? 'oui' : 'non' }}</td>
+                    <td>{{ patient.aideHabillage ? 'oui' : 'non' }}</td>
+                    <td>{{ patient.aideRepas ? 'oui' : 'non' }}</td>
                 </tr>
             </tbody>
         </table>
