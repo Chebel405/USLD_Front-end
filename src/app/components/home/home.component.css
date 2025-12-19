@@ -28,3 +28,30 @@
 .actions button:hover {
     background-color: #1565c0;
 }
+
+.ajout-patients {
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}
+
+.ajout-patients h3 {
+    margin-bottom: 15px;
+}
+
+.ajout-patients button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    background-color: #1976d2;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ajout-patients button:hover {
+    background-color: #135ba1;
+}

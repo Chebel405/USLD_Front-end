@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
@@ -7,12 +9,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 
 })
 export class HomeComponent implements OnInit {
   role: string = '';
   isAdmin: boolean = false;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('jwtToken');
@@ -21,5 +25,9 @@ export class HomeComponent implements OnInit {
       this.role = payload.role;
       this.isAdmin = payload.role === 'ADMIN';
     }
+  }
+
+  goTo(route: string): void {
+    this.router.navigate([route]);
   }
 }

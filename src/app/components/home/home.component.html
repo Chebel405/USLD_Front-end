@@ -3,9 +3,15 @@
     <p>Connecté en tant que <strong>{{ role }}</strong></p>
 
     <div class="actions">
-        <button routerLink="/patients/tous">📋 Voir tous les patients</button>
-        <button routerLink="/usld/ajouter">➕ Ajouter un patient USLD</button>
-        <button routerLink="/rechercher">🔍 Rechercher un patient</button>
-        <button *ngIf="isAdmin" routerLink="/soignants">👨‍⚕️ Gérer les soignants</button>
+        <button (click)="goTo('/patients/tous')">📋 Voir tous les patients</button>
+        <button (click)="goTo('/rechercher')">🔍 Rechercher un patient</button>
+        <button *ngIf="isAdmin" (click)="goTo('/soignants')">👨‍⚕️ Gérer les soignants</button>
+    </div>
+
+    <div class="ajout-patients">
+        <h3>➕ Ajouter un patient</h3>
+        <button (click)="goTo('/usld/ajouter')">🏥 Patient USLD</button>
+        <button (click)="goTo('/alzheimer/ajouter')">🧠 Patient Alzheimer</button>
+        <button (click)="goTo('/patients/sanssoin/ajouter')">🚶‍♂️ Patient Sans Soin</button>
     </div>
 </div>
