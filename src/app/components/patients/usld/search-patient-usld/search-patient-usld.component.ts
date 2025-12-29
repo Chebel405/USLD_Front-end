@@ -1,64 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { PatientUsldService } from '../../../../services/patient-usld.service';
 import { PatientUSLD } from '../../../../models/patient-usld.model';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
+type Critere = 'nom' | 'prenom' | 'dateNaissance' | 'numeroChambre' | 'autonomie';
 
 @Component({
   selector: 'app-search-patient-usld',
   templateUrl: './search-patient-usld.component.html',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, FormsModule],
 })
-export class SearchPatientUsldComponent {
-  nomRecherche = '';
-  prenomRecherche = '';
-  dateNaissanceRecherche = '';
-  numeroChambreRecherche = '';
-  autonomieRecherche = '';
+export class SearchPatientUsldComponent implements OnInit {
+  role: string = '';
+  isAdmin: boolean = false;
+
+
+  critere: Critere = 'nom';
+  valeur: string = '';
+
   patients: PatientUSLD[] = [];
+  aDejaRecherche = false;
 
   constructor(private patientService: PatientUsldService) { }
 
-  rechercherNom() {
-    console.log("Recherche déclenchée par nom :", this.nomRecherche);
-    this.patientService.findByNom(this.nomRecherche).subscribe({
-      next: (patients) => this.patients = patients,
-      error: (err) => console.error(err)
+  ngOnInit(): void {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      this.role = payload.role;
+      this.isAdmin = payload.role === 'ADMIN';
+    }
+  }
+
+  rechercher(): void {
+    const v = (this.valeur || '').trim();
+    if (!v) return;
+
+    this.aDejaRecherche = true;
+    this.patients = [];
+
+    const chambre = Number(v);
+
+    const actions: Record<Critere, () => any> = {
+      nom: () => this.patientService.findByNom(v),
+      prenom: () => this.patientService.findByPrenom(v),
+      dateNaissance: () => this.patientService.findByDateNaissance(v),
+      numeroChambre: () => this.patientService.findByNumeroChambre(chambre),
+      autonomie: () => this.patientService.findByAutonomie(v),
+    };
+
+    // garde-fou si critere = numeroChambre et pas un nombre
+    if (this.critere === 'numeroChambre' && Number.isNaN(chambre)) {
+      return;
+    }
+
+    actions[this.critere]().subscribe({
+      next: (patients: PatientUSLD[]) => (this.patients = patients),
+      error: (err: any) => console.error(err),
     });
   }
 
-  rechercherPrenom() {
-    console.log("Recherche déclenchée par prénom :", this.prenomRecherche);
-    this.patientService.findByPrenom(this.prenomRecherche).subscribe({
-      next: (patients) => this.patients = patients,
-      error: (err) => console.error(err)
-    });
-  }
 
-  rechercherDateNaissance() {
-    console.log("Recherche déclenchée par date de naissance :", this.dateNaissanceRecherche);
-    this.patientService.findByDateNaissance(this.dateNaissanceRecherche).subscribe({
-      next: (patients) => this.patients = patients,
-      error: (err) => console.error(err)
-    });
+  reset(): void {
+    this.critere = 'nom';
+    this.valeur = '';
+    this.patients = [];
+    this.aDejaRecherche = false;
   }
-
-  rechercherNumeroChambre() {
-    console.log("Recherche déclenchée par numéros de chambre :", this.numeroChambreRecherche);
-    this.patientService.findByNumeroChambre(this.numeroChambreRecherche).subscribe({
-      next: (patients) => this.patients = patients,
-      error: (err) => console.error(err)
-    });
-  }
-
-  rechercherAutonomie() {
-    console.log("Recherche déclenchée par niveau d'autonomie :", this.autonomieRecherche);
-    this.patientService.findByAutonomie(this.autonomieRecherche).subscribe({
-      next: (patients) => this.patients = patients,
-      error: (err) => console.error(err)
-    });
-  }
-
 }

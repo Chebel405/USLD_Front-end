@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { PatientUSLD } from '../models/patient-usld.model';
 import { Observable } from 'rxjs';
 
@@ -11,58 +11,53 @@ export class PatientUsldService {
 
     constructor(private http: HttpClient) { }
 
-
     findAll(): Observable<PatientUSLD[]> {
         return this.http.get<PatientUSLD[]>(this.apiUrl);
     }
 
-    // Get patient by ID
     findById(id: number): Observable<PatientUSLD> {
         return this.http.get<PatientUSLD>(`${this.apiUrl}/${id}`);
     }
 
-    // Create new patient
     create(patient: PatientUSLD): Observable<PatientUSLD> {
         return this.http.post<PatientUSLD>(this.apiUrl, patient);
     }
 
-    // Update patient
     update(id: number, patient: PatientUSLD): Observable<PatientUSLD> {
         return this.http.put<PatientUSLD>(`${this.apiUrl}/${id}`, patient);
     }
 
-    // Delete patient
     delete(id: number): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
 
-    // Search by name
+    // 🔍 Recherche par nom
     findByNom(nom: string): Observable<PatientUSLD[]> {
-        console.log("API call to:", `${this.apiUrl}/search/nom?nom=${nom}`);
-        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/nom?nom=${nom}`);
+        const params = new HttpParams().set('nom', nom);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/nom`, { params });
     }
 
-    // Search by first name
+    // 🔍 Recherche par prénom
     findByPrenom(prenom: string): Observable<PatientUSLD[]> {
-        console.log("API call to:", `${this.apiUrl}/search/prenom?prenom=${prenom}`);
-        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/prenom?prenom=${prenom}`);
+        const params = new HttpParams().set('prenom', prenom);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/prenom`, { params });
     }
 
-    // Search by birth date
+    // 🔍 Recherche par date de naissance (YYYY-MM-DD)
     findByDateNaissance(dateNaissance: string): Observable<PatientUSLD[]> {
-        console.log("API call to:", `${this.apiUrl}/search/date-naissance?dateNaissance=${dateNaissance}`);
-        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/date-naissance?dateNaissance=${dateNaissance}`);
+        const params = new HttpParams().set('dateNaissance', dateNaissance);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/date-naissance`, { params });
     }
 
-    // Search by room number
-    findByNumeroChambre(numeroChambre: string): Observable<PatientUSLD[]> {
-        console.log("API call to:", `${this.apiUrl}/search/chambre?numeroChambre=${numeroChambre}`);
-        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/chambre?numeroChambre=${numeroChambre}`);
+    // 🔍 Recherche par numéro de chambre (Integer côté back)
+    findByNumeroChambre(numeroChambre: number): Observable<PatientUSLD[]> {
+        const params = new HttpParams().set('numeroChambre', numeroChambre.toString());
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/chambre`, { params });
     }
 
-    // Search by autonomy level
+    // 🔍 Recherche par niveau d'autonomie
     findByAutonomie(niveauAutonomie: string): Observable<PatientUSLD[]> {
-        console.log("API call to:", `${this.apiUrl}/search/autonomie?niveauAutonomie=${niveauAutonomie}`);
-        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/autonomie?niveauAutonomie=${niveauAutonomie}`);
+        const params = new HttpParams().set('niveauAutonomie', niveauAutonomie);
+        return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/autonomie`, { params });
     }
 }

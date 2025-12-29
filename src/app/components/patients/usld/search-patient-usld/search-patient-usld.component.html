@@ -1,33 +1,24 @@
 <h2>Recherche de patients USLD</h2>
 
+<form (ngSubmit)="rechercher()"
+    style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+    <select [(ngModel)]="critere" name="critere" required>
+        <option value="nom">Nom</option>
+        <option value="prenom">Prénom</option>
+        <option value="dateNaissance">Date de naissance</option>
+        <option value="numeroChambre">Numéro de chambre</option>
+        <option value="autonomie">Niveau d'autonomie</option>
+    </select>
 
-<form (ngSubmit)="rechercherNom()" style="margin-bottom: 1rem;">
-    <input [(ngModel)]="nomRecherche" name="nomRecherche" placeholder="Nom du patient" required />
-    <button type="submit">Rechercher par nom</button>
+    <input [type]="
+      critere === 'dateNaissance'
+        ? 'date'
+        : (critere === 'numeroChambre' ? 'number' : 'text')
+    " [(ngModel)]="valeur" name="valeur" placeholder="Valeur à rechercher" required />
+
+    <button type="submit">Rechercher</button>
+    <button type="button" (click)="reset()">Réinitialiser</button>
 </form>
-
-<form (ngSubmit)="rechercherPrenom()" style="margin-bottom: 1rem;">
-    <input [(ngModel)]="prenomRecherche" name="prenomRecherche" placeholder="Prénom du patient" required />
-    <button type="submit">Rechercher par prénom</button>
-</form>
-
-<form (ngSubmit)="rechercherDateNaissance()" style="margin-bottom: 1rem;">
-    <input [(ngModel)]="dateNaissanceRecherche" name="dateNaissanceRecherche" type="date"
-        placeholder="Date de naissance du patient" required />
-    <button type="submit">Rechercher par date de naissance</button>
-</form>
-
-<form (ngSubmit)="rechercherNumeroChambre()" style="margin-bottom: 1rem;">
-    <input [(ngModel)]="numeroChambreRecherche" name="numeroChambreRecherche" placeholder="Numéro de chambre"
-        required />
-    <button type="submit">Numéro de chambre</button>
-</form>
-
-<form (ngSubmit)="rechercherAutonomie()" style="margin-bottom: 1rem;">
-    <input [(ngModel)]="autonomieRecherche" name="autonomieRecherche" placeholder="Niveau d'autonomie" required />
-    <button type="submit">Niveau d'autonomie</button>
-</form>
-
 
 <div *ngIf="patients.length > 0">
     <h3>Résultats :</h3>
@@ -61,7 +52,6 @@
     </table>
 </div>
 
-<!-- Message si aucun résultat -->
-<div *ngIf="patients.length === 0">
+<div *ngIf="aDejaRecherche && patients.length === 0">
     <p>Aucun patient trouvé.</p>
 </div>
