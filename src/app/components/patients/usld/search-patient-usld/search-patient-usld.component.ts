@@ -27,13 +27,23 @@ export class SearchPatientUsldComponent implements OnInit {
   constructor(private patientService: PatientUsldService) { }
 
   ngOnInit(): void {
+    if (typeof window === 'undefined') return;
+
     const token = localStorage.getItem('jwtToken');
-    if (token) {
+    if (!token) return;
+
+    try {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      this.role = payload.role;
-      this.isAdmin = payload.role === 'ADMIN';
+      this.role = payload.role ?? '';
+      this.isAdmin = this.role === 'ADMIN';
+    } catch (e) {
+      console.error('Token JWT invalide', e);
+      this.role = '';
+      this.isAdmin = false;
     }
   }
+
+
 
   rechercher(): void {
     const v = (this.valeur || '').trim();
@@ -48,7 +58,7 @@ export class SearchPatientUsldComponent implements OnInit {
       nom: () => this.patientService.findByNom(v),
       prenom: () => this.patientService.findByPrenom(v),
       dateNaissance: () => this.patientService.findByDateNaissance(v),
-      numeroChambre: () => this.patientService.findByNumeroChambre(chambre),
+      numeroChambre: () => this.patientService.findByNumeroChambre(v),
       autonomie: () => this.patientService.findByAutonomie(v),
     };
 

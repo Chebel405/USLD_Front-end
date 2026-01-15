@@ -49,9 +49,9 @@ export class PatientUsldService {
         return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/date-naissance`, { params });
     }
 
-    // 🔍 Recherche par numéro de chambre (Integer côté back)
-    findByNumeroChambre(numeroChambre: number): Observable<PatientUSLD[]> {
-        const params = new HttpParams().set('numeroChambre', numeroChambre.toString());
+    // 🔍 Recherche par numéro de chambre (String côté back)
+    findByNumeroChambre(numeroChambre: string): Observable<PatientUSLD[]> {
+        const params = new HttpParams().set('numeroChambre', numeroChambre);
         return this.http.get<PatientUSLD[]>(`${this.apiUrl}/search/chambre`, { params });
     }
 
