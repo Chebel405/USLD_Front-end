@@ -1,0 +1,49 @@
+<h2>Recherche globale de patients</h2>
+
+<form (ngSubmit)="rechercher()"
+    style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+
+    <select [(ngModel)]="critere" name="critere" required>
+        <option value="nom">Nom</option>
+        <option value="prenom">Prénom</option>
+    </select>
+
+    <input type="text" [(ngModel)]="valeur" name="valeur" placeholder="Valeur à rechercher" required />
+
+    <button type="submit">Rechercher</button>
+    <button type="button" (click)="reset()">Réinitialiser</button>
+</form>
+
+<div *ngIf="patients.length > 0">
+    <h3>Résultats :</h3>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Numéro de chambre</th>
+                <th>Niveau d'autonomie</th>
+                <th>Service</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let p of patients">
+                <td>{{ p.id }}</td>
+                <td>{{ p.nom }}</td>
+                <td>{{ p.prenom }}</td>
+                <td>{{ p.dateNaissance }}</td>
+                <td>{{ p.numeroChambre }}</td>
+                <td>{{ p.niveauAutonomie }}</td>
+                <td>{{ getServiceLabel(p) }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="aDejaRecherche && patients.length === 0">
+    <p>Aucun patient trouvé.</p>
+</div>

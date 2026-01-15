@@ -1,57 +1,58 @@
-<h2>Recherche de patients</h2>
+<div class="page-container">
+    <h2 class="title">Recherche de patients (USLD)</h2>
 
-<form (ngSubmit)="rechercher()"
-    style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-    <select [(ngModel)]="critere" name="critere" required>
-        <option value="nom">Nom</option>
-        <option value="prenom">Prénom</option>
-        <option value="dateNaissance">Date de naissance</option>
-        <option value="numeroChambre">Numéro de chambre</option>
-        <option value="autonomie">Niveau d'autonomie</option>
-    </select>
+    <div class="search-card">
+        <div class="search-form">
+            <select [(ngModel)]="critere" class="field">
+                <option value="nom">Nom</option>
+                <option value="prenom">Prénom</option>
+                <option value="dateNaissance">Date de naissance</option>
+                <option value="numeroChambre">Numéro de chambre</option>
+                <option value="autonomie">Niveau d'autonomie</option>
+            </select>
 
-    <input [type]="
-      critere === 'dateNaissance'
-        ? 'date'
-        : (critere === 'numeroChambre' ? 'number' : 'text')
-    " [(ngModel)]="valeur" name="valeur" placeholder="Valeur à rechercher" required />
+            <input class="field" type="text" [(ngModel)]="valeur" placeholder="Valeur à rechercher" />
 
-    <button type="submit">Rechercher</button>
-    <button type="button" (click)="reset()">Réinitialiser</button>
-</form>
+            <button class="btn primary" (click)="rechercher()">Rechercher</button>
+            <button class="btn" (click)="reset()">Réinitialiser</button>
+        </div>
+    </div>
 
-<div *ngIf="patients.length > 0">
-    <h3>Résultats :</h3>
-    <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Date de naissance</th>
-                <th>Chambre</th>
-                <th>Autonomie</th>
-                <th>Toilette assistée</th>
-                <th>Aide habillage</th>
-                <th>Aide repas</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let p of patients">
-                <td>{{ p.id }}</td>
-                <td>{{ p.nom }}</td>
-                <td>{{ p.prenom }}</td>
-                <td>{{ p.dateNaissance }}</td>
-                <td>{{ p.numeroChambre }}</td>
-                <td>{{ p.niveauAutonomie }}</td>
-                <td>{{ p.toiletteAssistee ? 'Oui' : 'Non' }}</td>
-                <td>{{ p.aideHabillage ? 'Oui' : 'Non' }}</td>
-                <td>{{ p.aideRepas ? 'Oui' : 'Non' }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="results-card" *ngIf="aDejaRecherche">
+        <h3 class="subtitle">Résultats :</h3>
 
-<div *ngIf="aDejaRecherche && patients.length === 0">
-    <p>Aucun patient trouvé.</p>
+        <table class="table" *ngIf="patients.length > 0; else noResults">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de naissance</th>
+                    <th>Chambre</th>
+                    <th>Autonomie</th>
+                    <th>Toilette assistée</th>
+                    <th>Aide habillage</th>
+                    <th>Aide repas</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let p of patients">
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.nom }}</td>
+                    <td>{{ p.prenom }}</td>
+                    <td>{{ p.dateNaissance }}</td>
+                    <td>{{ p.numeroChambre || '—' }}</td>
+                    <td>{{ p.niveauAutonomie || '—' }}</td>
+                    <td>{{ p.toiletteAssistee ? 'Oui' : 'Non' }}</td>
+                    <td>{{ p.aideHabillage ? 'Oui' : 'Non' }}</td>
+                    <td>{{ p.aideRepas ? 'Oui' : 'Non' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ng-template #noResults>
+            <p class="empty">Aucun patient trouvé.</p>
+        </ng-template>
+    </div>
 </div>

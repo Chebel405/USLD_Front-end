@@ -50,11 +50,18 @@ export const routes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: 'rechercher',
+        path: 'search',
         loadComponent: () =>
             import('./components/patients/usld/search-patient-usld/search-patient-usld.component')
                 .then(m => m.SearchPatientUsldComponent)
     },
+    {
+        path: 'patients/search',
+        loadComponent: () =>
+            import('./components/patients/search-patient/search-patient.component')
+                .then(m => m.SearchPatientComponent)
+    }
+
 
 
 ];
