@@ -1,9 +1,9 @@
-<div class="page-container">
+<div class="patient-search-page">
     <h2 class="title">Recherche de patients (USLD)</h2>
 
-    <div class="search-card">
-        <div class="search-form">
-            <select [(ngModel)]="critere" class="field">
+    <div class="patient-search-card">
+        <div class="patient-search-form">
+            <select [(ngModel)]="critere" class="patient-search-field">
                 <option value="nom">Nom</option>
                 <option value="prenom">Prénom</option>
                 <option value="dateNaissance">Date de naissance</option>
@@ -11,17 +11,17 @@
                 <option value="autonomie">Niveau d'autonomie</option>
             </select>
 
-            <input class="field" type="text" [(ngModel)]="valeur" placeholder="Valeur à rechercher" />
+            <input class="patient-search-field" type="text" [(ngModel)]="valeur" placeholder="Valeur à rechercher" />
 
-            <button class="btn primary" (click)="rechercher()">Rechercher</button>
-            <button class="btn" (click)="reset()">Réinitialiser</button>
+            <button class="patient-search-btn" (click)="rechercher()">Rechercher</button>
+            <button class="patient-search-btn" (click)="reset()">Réinitialiser</button>
         </div>
     </div>
 
     <div class="results-card" *ngIf="aDejaRecherche">
         <h3 class="subtitle">Résultats :</h3>
 
-        <table class="table" *ngIf="patients.length > 0; else noResults">
+        <table class="patient-search-table" *ngIf="patients.length > 0; else noResults">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -52,7 +52,7 @@
         </table>
 
         <ng-template #noResults>
-            <p class="empty">Aucun patient trouvé.</p>
+            <p class="patient-search-empty">Aucun patient trouvé.</p>
         </ng-template>
     </div>
 </div>

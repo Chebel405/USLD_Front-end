@@ -1,0 +1,80 @@
+/* Container global */
+.patient-search-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+/* Titres */
+.patient-search-page .title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 16px;
+}
+
+.patient-search-page .subtitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 16px 0 10px;
+}
+
+/* Carte */
+.patient-search-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Form */
+.patient-search-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.patient-search-field {
+    height: 36px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    min-width: 180px;
+}
+
+.patient-search-btn {
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    background: #f5f5f5;
+}
+
+.patient-search-btn.primary {
+    background: #1976d2;
+    color: #fff;
+    border-color: #1976d2;
+}
+
+/* Table */
+.patient-search-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.patient-search-table th,
+.patient-search-table td {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.patient-search-empty {
+    margin-top: 10px;
+    opacity: 0.8;
+}

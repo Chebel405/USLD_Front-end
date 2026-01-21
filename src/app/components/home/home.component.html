@@ -4,7 +4,8 @@
 
     <div class="actions">
         <button (click)="goTo('/patients/tous')">📋 Voir tous les patients</button>
-        <button (click)="goTo('/rechercher')">🔍 Rechercher un patient</button>
+        <button (click)="goTo('/patients/search')">🔍 Recherche globale des patients</button>
+        <button (click)="goTo('/search')">🔍 Recherche patients USLD</button>
         <button *ngIf="isAdmin" (click)="goTo('/soignants')">👨‍⚕️ Gérer les soignants</button>
     </div>
 
