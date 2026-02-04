@@ -16,7 +16,7 @@
         </form>
     </div>
 
-    <div *ngIf="aDejaRecherche" class="patient-search-card" style="margin-top: 16px;">
+    <div *ngIf="aDejaRecherche" class="patient-search-card">
         <h3 class="subtitle">Résultats :</h3>
 
         <table class="patient-search-table" *ngIf="patients.length > 0; else noResults">
