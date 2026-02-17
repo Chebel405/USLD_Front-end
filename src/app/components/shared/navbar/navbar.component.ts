@@ -17,6 +17,9 @@ export class NavbarComponent {
         this.authService.logout();
         this.router.navigate(['/login']);
     }
+    isLoginPage(): boolean {
+        return this.router.url.startsWith('/login');
+    }
     ngOnInit() {
         console.log("Connecté ?", this.authService.isLoggedIn());
     }

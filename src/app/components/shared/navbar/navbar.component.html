@@ -5,8 +5,8 @@
         </a>
         <span class="app-title">Application de gestion des patients</span>
     </div>
-
-    <button *ngIf="authService.isLoggedIn()" (click)="logout()" class="logout-button">
+    <button *ngIf="authService.isLoggedIn() && !isLoginPage()" (click)="logout()" class="logout-button">
         Se déconnecter
     </button>
+
 </nav>
