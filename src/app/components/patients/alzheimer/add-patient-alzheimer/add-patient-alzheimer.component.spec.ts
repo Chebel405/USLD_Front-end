@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddPatientAlzheimerComponent } from './add-patient-alzheimer.component';
 
 describe('AddPatientAlzheimerComponent', () => {
@@ -10,7 +9,7 @@ describe('AddPatientAlzheimerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AddPatientAlzheimerComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AddPatientAlzheimerComponent);
     component = fixture.componentInstance;

@@ -1,63 +1,98 @@
 <h2>Ajouter un patient Alzheimer</h2>
 
-<form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
-    <div>
+<form [formGroup]="patientForm" (ngSubmit)="onSubmit()" class="form-container">
+
+    <div class="form-group">
         <label>Nom :</label>
         <input type="text" formControlName="nom" />
+        <small class="error" *ngIf="patientForm.get('nom')?.touched && patientForm.get('nom')?.hasError('required')">
+            Le nom est obligatoire.
+        </small>
+        <small class="error" *ngIf="patientForm.get('nom')?.touched && patientForm.get('nom')?.hasError('minlength')">
+            Le nom doit contenir au moins 2 caractères.
+        </small>
     </div>
 
-    <div>
+    <div class="form-group">
         <label>Prénom :</label>
         <input type="text" formControlName="prenom" />
+        <small class="error"
+            *ngIf="patientForm.get('prenom')?.touched && patientForm.get('prenom')?.hasError('required')">
+            Le prénom est obligatoire.
+        </small>
+        <small class="error"
+            *ngIf="patientForm.get('prenom')?.touched && patientForm.get('prenom')?.hasError('minlength')">
+            Le prénom doit contenir au moins 2 caractères.
+        </small>
     </div>
 
-    <div>
+    <div class="form-group">
         <label>Date de naissance :</label>
         <input type="date" formControlName="dateNaissance" />
+        <small class="error"
+            *ngIf="patientForm.get('dateNaissance')?.touched && patientForm.get('dateNaissance')?.hasError('required')">
+            La date de naissance est obligatoire.
+        </small>
     </div>
 
-    <div>
+    <div class="form-group">
         <label>Numéro de chambre :</label>
         <input type="number" formControlName="numeroChambre" />
+        <small class="error"
+            *ngIf="patientForm.get('numeroChambre')?.touched && patientForm.get('numeroChambre')?.hasError('required')">
+            Le numéro de chambre est obligatoire.
+        </small>
+        <small class="error"
+            *ngIf="patientForm.get('numeroChambre')?.touched && patientForm.get('numeroChambre')?.hasError('min')">
+            Le numéro de chambre doit être supérieur ou égal à 1.
+        </small>
     </div>
 
-    <div>
+    <div class="form-group">
         <label>Niveau d’autonomie :</label>
         <input type="text" formControlName="niveauAutonomie" />
+        <small class="error"
+            *ngIf="patientForm.get('niveauAutonomie')?.touched && patientForm.get('niveauAutonomie')?.hasError('required')">
+            Le niveau d’autonomie est obligatoire.
+        </small>
     </div>
 
-    <div>
+    <div class="form-check">
         <label>
             <input type="checkbox" formControlName="toiletteAssistee" />
             Toilette assistée
         </label>
     </div>
 
-    <div>
+    <div class="form-check">
         <label>
             <input type="checkbox" formControlName="aideHabillage" />
             Aide à l’habillage
         </label>
     </div>
 
-    <div>
+    <div class="form-check">
         <label>
             <input type="checkbox" formControlName="aideRepas" />
             Aide au repas
         </label>
     </div>
 
-    <div>
+    <div class="form-group">
         <label>Stade de la maladie :</label>
         <input type="text" formControlName="stadeMaladie" />
+        <small class="error"
+            *ngIf="patientForm.get('stadeMaladie')?.touched && patientForm.get('stadeMaladie')?.hasError('required')">
+            Le stade de la maladie est obligatoire.
+        </small>
     </div>
 
-    <div>
+    <div class="form-check">
         <label>
             <input type="checkbox" formControlName="suiviPsychologue" />
             Suivi par un(e) psychologue
         </label>
     </div>
 
-    <button type="submit" [disabled]="!patientForm.valid">Valider</button>
+    <button type="submit" class="submit-button">Valider</button>
 </form>

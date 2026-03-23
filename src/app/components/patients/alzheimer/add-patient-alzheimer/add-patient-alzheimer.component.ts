@@ -33,18 +33,22 @@ export class AddPatientAlzheimerComponent {
   }
 
   onSubmit(): void {
-    if (this.patientForm.valid) {
-      const nouveauPatient: PatientAlzheimer = this.patientForm.value;
-      this.patientService.create(nouveauPatient).subscribe({
-        next: (result) => {
-          console.log('PAtient Azheimer ajouté avec succès', result);
-          this.patientForm.reset();
-        },
-        error: (error) => {
-          console.error('Erreur lors de l\ajout', error);
-        }
-      });
+    if (this.patientForm.invalid) {
+      this.patientForm.markAllAsTouched();
+      return;
     }
+
+    const nouveauPatient = this.patientForm.value;
+
+    this.patientService.create(nouveauPatient).subscribe({
+      next: (result) => {
+        console.log('Patient ajouté avec succès', result);
+        this.patientForm.reset();
+      },
+      error: (error) => {
+        console.error('Erreur lors de l\'ajout', error);
+      }
+    });
   }
 
 }

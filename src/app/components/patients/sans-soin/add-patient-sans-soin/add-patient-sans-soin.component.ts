@@ -30,18 +30,22 @@ export class AddPatientSansSoinComponent {
   }
 
   onSubmit(): void {
-    if (this.patientForm.valid) {
-      const nouveauPatient: PatientSansSoin = this.patientForm.value;
-      this.patientService.create(nouveauPatient).subscribe({
-        next: (result) => {
-          console.log('Patient sans soin ajouté avec succès', result);
-          this.patientForm.reset();
-        },
-        error: (error) => {
-          console.error('Erreur lors de l\'ajout', error);
-        }
-      });
+    if (this.patientForm.invalid) {
+      this.patientForm.markAllAsTouched();
+      return;
     }
+
+    const nouveauPatient: PatientSansSoin = this.patientForm.value;
+
+    this.patientService.create(nouveauPatient).subscribe({
+      next: (result) => {
+        console.log('Patient sans soin ajouté avec succès', result);
+        this.patientForm.reset();
+      },
+      error: (error) => {
+        console.error('Erreur lors de l\'ajout', error);
+      }
+    });
   }
 
 }

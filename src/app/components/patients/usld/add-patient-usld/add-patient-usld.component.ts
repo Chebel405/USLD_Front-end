@@ -20,29 +20,34 @@ export class AddPatientUsldComponent {
     private patientService: PatientUsldService
   ) {
     this.patientForm = this.fb.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
-      dateNaissance: ['', Validators.required],
-      numeroChambre: [null, Validators.required],
-      niveauAutonomie: ['', Validators.required],
+      nom: ['', [Validators.required, Validators.minLength(2)]],
+      prenom: ['', [Validators.required, Validators.minLength(2)]],
+      dateNaissance: ['', [Validators.required]],
+      numeroChambre: [null, [Validators.required, Validators.min(1)]],
+      niveauAutonomie: ['', [Validators.required]],
       toiletteAssistee: [false],
       aideHabillage: [false],
       aideRepas: [false]
     });
   }
-  onSubmit(): void {
-    if (this.patientForm.valid) {
-      const nouveauPatient: PatientUSLD = this.patientForm.value;
-      this.patientService.create(nouveauPatient).subscribe({
-        next: (result) => {
-          console.log('Patient ajouté avec succès', result);
-          this.patientForm.reset();
-        },
-        error: (error) => {
-          console.error('Erreur lors de l\'ajout', error);
-        }
-      });
-    }
-  }
 
+  onSubmit(): void {
+    if (this.patientForm.invalid) {
+      this.patientForm.markAllAsTouched();
+      return;
+    }
+
+    const nouveauPatient: PatientUSLD = this.patientForm.value;
+
+    this.patientService.create(nouveauPatient).subscribe({
+      next: (result) => {
+        console.log('Patient ajouté avec succès', result);
+        this.patientForm.reset();
+      },
+      error: (error) => {
+        console.error('Erreur lors de l\'ajout', error);
+      }
+    });
+  }
 }
+
