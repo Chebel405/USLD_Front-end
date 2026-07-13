@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #dcdcdc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.traitement-container {
+    padding: 24px;
+}

@@ -73,10 +73,8 @@ export const routes: Routes = [
                 .then(m => m.SearchPatientComponent)
     },
     {
-        path: '', redirectTo: '/home', pathMatch: 'full'
-    },
-    {
-        path: '**', redirectTo: '/home'
+        path: '**',
+        redirectTo: 'login'
     }
 
 

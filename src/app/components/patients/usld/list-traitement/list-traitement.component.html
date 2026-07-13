@@ -1,0 +1,43 @@
+<div class="traitement-container">
+    <h2>Liste des traitements</h2>
+
+    <p *ngIf="messageErreur">
+        {{ messageErreur }}
+    </p>
+
+    <p *ngIf="traitements.length === 0 && !messageErreur">
+        Aucun traitement enregistré.
+    </p>
+
+    <table *ngIf="traitements.length > 0">
+        <thead>
+            <tr>
+                <th>Médicament</th>
+                <th>Dosage</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Matin</th>
+                <th>Midi</th>
+                <th>Soir</th>
+                <th>Coucher</th>
+                <th>Observations</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let traitement of traitements">
+                <td>{{ traitement.nomMedicament }}</td>
+                <td>{{ traitement.dosageMg }} mg</td>
+                <td>{{ traitement.dateDebut | date:'dd/MM/yyyy' }}</td>
+                <td>
+                    {{ traitement.dateFin ? (traitement.dateFin | date:'dd/MM/yyyy') : 'Traitement continu' }}
+                </td>
+                <td>{{ traitement.priseMatin }}</td>
+                <td>{{ traitement.priseMidi }}</td>
+                <td>{{ traitement.priseSoir }}</td>
+                <td>{{ traitement.priseCoucher }}</td>
+                <td>{{ traitement.observations || '-' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
