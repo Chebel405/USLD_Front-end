@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Traitement } from '../../../../models/traitement.model';
 import { TraitementService } from '../../../../services/traitement.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ListTraitementComponent implements OnInit {
 
   messageErreur = '';
 
-  constructor(private traitementService: TraitementService) { }
+  constructor(private traitementService: TraitementService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.chargerTraitements();
@@ -33,6 +35,9 @@ export class ListTraitementComponent implements OnInit {
 
       }
     });
+  }
+  modifierTraitement(id: number): void {
+    this.router.navigate(['/usld/traitements/modifier', id]);
   }
 
 }

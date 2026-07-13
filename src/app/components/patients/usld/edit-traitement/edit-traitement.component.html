@@ -1,0 +1,57 @@
+<div class="edit-container" *ngIf="traitement">
+    <h2>Modifier le traitement</h2>
+
+    <form (ngSubmit)="enregistrerModification()">
+
+        <div class="form-group">
+            <label for="nomMedicament">Médicament</label>
+            <input id="nomMedicament" name="nomMedicament" type="text" [(ngModel)]="traitement.nomMedicament">
+        </div>
+
+        <div class="form-group">
+            <label for="dosageMg">Dosage</label>
+            <input id="dosageMg" name="dosageMg" type="number" [(ngModel)]="traitement.dosageMg">
+        </div>
+
+        <div class="form-group">
+            <label for="dateDebut">Date de début</label>
+            <input id="dateDebut" name="dateDebut" type="date" [(ngModel)]="traitement.dateDebut">
+        </div>
+
+        <div class="form-group">
+            <label for="dateFin">Date de fin</label>
+            <input id="dateFin" name="dateFin" type="date" [(ngModel)]="traitement.dateFin">
+        </div>
+
+        <div class="form-group">
+            <label for="priseMatin">Prise matin</label>
+            <input id="priseMatin" name="priseMatin" type="number" [(ngModel)]="traitement.priseMatin">
+        </div>
+
+        <div class="form-group">
+            <label for="priseMidi">Prise midi</label>
+            <input id="priseMidi" name="priseMidi" type="number" [(ngModel)]="traitement.priseMidi">
+        </div>
+
+        <div class="form-group">
+            <label for="priseSoir">Prise soir</label>
+            <input id="priseSoir" name="priseSoir" type="number" [(ngModel)]="traitement.priseSoir">
+        </div>
+
+        <div class="form-group">
+            <label for="priseCoucher">Prise coucher</label>
+            <input id="priseCoucher" name="priseCoucher" type="number" [(ngModel)]="traitement.priseCoucher">
+        </div>
+
+        <div class="form-group">
+            <label for="observations">Observations</label>
+            <textarea id="observations" name="observations" [(ngModel)]="traitement.observations">
+      </textarea>
+        </div>
+
+        <button type="submit">
+            Enregistrer
+        </button>
+
+    </form>
+</div>

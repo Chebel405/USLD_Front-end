@@ -21,6 +21,7 @@
                 <th>Soir</th>
                 <th>Coucher</th>
                 <th>Observations</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -37,6 +38,11 @@
                 <td>{{ traitement.priseSoir }}</td>
                 <td>{{ traitement.priseCoucher }}</td>
                 <td>{{ traitement.observations || '-' }}</td>
+                <td>
+                    <button type="button" class="btn-modifier" (click)="modifierTraitement(traitement.id!)">
+                        Modifier
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

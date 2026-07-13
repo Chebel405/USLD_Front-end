@@ -27,3 +27,16 @@ h2 {
 .traitement-container {
     padding: 24px;
 }
+
+.btn-modifier {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-modifier:hover {
+    background-color: #45a049;
+}
